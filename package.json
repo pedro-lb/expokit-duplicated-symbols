@@ -11,6 +11,7 @@
     "postinstall": "npx jetify"
   },
   "dependencies": {
+    "@react-native-community/cli-platform-ios": "^3.0.0",
     "expo": "~36.0.0",
     "expokit": "36.0.0",
     "react": "~16.9.0",
