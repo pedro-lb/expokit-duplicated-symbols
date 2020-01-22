@@ -16,7 +16,7 @@ You can find the full build error [here](https://pastebin.com/wLc1t1gJ).
  - Run `yarn install`.
  - Go into `ios` directory and run `pod install`: `cd ios && pod install`.
  - Start the expo server with `yarn start --clear`.
- - Open the project in XCode, click `Build` (or hit `⌘ + B`) 
+ - Open the project in XCode, click `Build` (or hit `⌘ + B`).
  
  You should hit the error: `duplicate symbols for architecture x86_64`.
 
