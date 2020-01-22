@@ -60,7 +60,7 @@
   "devDependencies": {
     "babel-eslint": "8.2.1",
     "babel-preset-expo": "8.0.0",
-    "eslint": "4.15.0",
+    "eslint": "4.18.2",
     "eslint-plugin-eslint-comments": "2.0.2",
     "eslint-plugin-flowtype": "2.41.0",
     "eslint-plugin-jest": "21.6.1",
