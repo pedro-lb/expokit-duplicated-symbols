@@ -303,3 +303,6 @@ Unfortunately, none of them worked for us.
 - https://github.com/react-native-community/react-native-maps/issues/718
 - https://stackoverflow.com/questions/39732017/xcode-ld-275-duplicate-symbols-for-architecture-arm64-clang-error-linker-com
 https://stackoverflow.com/questions/48214603/duplicate-symbols-for-architecture-x86-64-ios-react-native/
+- https://www.gitmemory.com/issue/facebook/react-native/23886/507998886
+- https://github.com/react-native-community/react-native-maps/issues/718
+- https://github.com/facebook/react-native/issues/8517
