@@ -11,15 +11,17 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
 You can find the full build error [here](https://pastebin.com/wLc1t1gJ).
 
-## ℹ️ Steps to reproduce error after `git clone`
+## ℹ️ Steps to reproduce error after `git clone`:
+
  - Run `yarn install`.
  - Go into `ios` directory and run `pod install`: `cd ios && pod install`.
  - Start the expo server with `yarn start --clear`.
  - Open the project in XCode, click `Build` (or hit `⌘ + B`) 
- - Error: `duplicate symbols for architecture x86_64`.
+ 
+ You should hit the error: `duplicate symbols for architecture x86_64`.
 
 
-## ℹ️ Error details
+## ℹ️ Error details:
 
 So this error started happening on our ExpoKit project after upgrading Expo's version. The project is using Expo SDK 36.0.0, and we're trying to build it with XCode Version 11.3.1 (11C504).
 
@@ -33,7 +35,7 @@ react-native-screens
 react-native-safe-area-context
 ```
 
-## 💡 Solutions already attempted
+## 💡 Solutions already attempted:
 
 We've tried a few fixes as listed below.
 
@@ -208,8 +210,7 @@ After running `rm -rf Podfile.lock Pods && pod install`, we've tried to build, b
 ```
 
 
-
-## 📚 References
+## 📚 References:
 
 Below are the links we've visited for research and solutions we've tried. Unfortunately, none of them worked for us.
 
