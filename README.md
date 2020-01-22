@@ -2,6 +2,8 @@
 
 Repo to replicate the "duplicate symbols for architecture x86_64" happening in iOS build using XCode Version 11.3.1 (11C504). 
 
+![Error](https://i.imgur.com/2xs5W83.png)
+
 Expected behaviour on iOS build:
 
 ```
@@ -10,6 +12,7 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 ```
 
 You can find the full build error [here](https://pastebin.com/wLc1t1gJ).
+
 
 ## ℹ️ Steps to reproduce error after `git clone`:
 
@@ -25,15 +28,16 @@ You can find the full build error [here](https://pastebin.com/wLc1t1gJ).
 
 So this error started happening on our ExpoKit project after upgrading Expo's version. The project is using Expo SDK 36.0.0, and we're trying to build it with XCode Version 11.3.1 (11C504).
 
-This repo simulates the problem by adding all the conflicting dependencies and trying to build.
+This repo simulates the problem by adding all the conflicting dependencies and trying to build it on XCode, as detailed on steps above.
 
-After a few hours of tinkering we've found that these packages are conflicting with `ExpoKit`'s linked libraries:
+After a few hours of tinkering we've found that these packages below are conflicting with `ExpoKit`'s linked libraries. The link created with React Native's autolink between them and `ExpoKit`'s declared libraries is what seems to be causing the problem.
 
 ```
 @react-native-community/masked-view
 react-native-screens
 react-native-safe-area-context
 ```
+
 
 ## 💡 Solutions already attempted:
 
@@ -124,7 +128,6 @@ On this repository, the project builds and works correctly! But I guess this hap
 ld: library not found for -lRNCMaskedView
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 ```
-
 
 ### ❌ Tinkering with XCode build settings:
 
