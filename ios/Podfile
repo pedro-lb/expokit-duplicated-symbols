@@ -27,6 +27,9 @@ target 'expokit-duplicated-symbols' do
   require_relative '../node_modules/react-native/scripts/autolink-ios.rb'
   use_react_native!
 
+  pod 'Firebase/Core', '~> 6.13.0'
+  pod 'Firebase/Messaging', '~> 6.13.0'
+
   use_native_modules!
 
   post_install do |installer|
