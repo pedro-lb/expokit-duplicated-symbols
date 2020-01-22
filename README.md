@@ -215,7 +215,9 @@ After running `rm -rf Podfile.lock Pods && pod install`, we've tried to build, b
 
 ## 📚 References:
 
-Below are the links we've visited for research and solutions we've tried. Unfortunately, none of them worked for us.
+Below are the links we've visited for research and solutions we've tried. 
+
+Unfortunately, none of them worked for us.
 
 - https://github.com/pedro-lb/expo-36-react-native-music-control/issues/1
 - https://github.com/tanguyantoine/react-native-music-control/issues/303
