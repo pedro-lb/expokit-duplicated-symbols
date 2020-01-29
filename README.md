@@ -68,9 +68,9 @@ post_install do |installer|
 end
 ```
 
-### ❌ Disabling `autolink` for conflicting dependencies on `react-native-config.js`:
+### ❌ Disabling `autolink` for conflicting dependencies on `react-native.config.js`:
 
-By disabling React Native's autolink for the conflicting dependencies in `react-native-config.js` file, the project still does not build, and a new error appears.
+By disabling React Native's autolink for the conflicting dependencies in `react-native.config.js` file, the project still does not build, and a new error appears.
 
 ```
 module.exports = {
