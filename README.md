@@ -1,6 +1,6 @@
 # UPDATE: THIS PROBLEM HAS BEEN SOLVED!
 
-## ✅ HOW WE'VE SOLVED THE PROBLEM
+## ✅ HOW WE'VE SOLVED THE PROBLEM ✅
 
 To solve this we're going to need to modify files inside `node_modules` folder. 
 
