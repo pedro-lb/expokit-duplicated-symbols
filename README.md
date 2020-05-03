@@ -1,3 +1,120 @@
+# UPDATE: THIS PROBLEM HAS BEEN SOLVED!
+
+## ✅ HOW WE'VE SOLVED THE PROBLEM
+
+To solve this we're going to need to modify files inside `node_modules` folder. 
+
+## 1. Identifying conflicted libs
+
+First, we need to identify which libs are conflicting - we can do this by checking the error details in XCode. In our case, these libs were generating conflicts:
+
+- react-native-screens 
+- @react-native-community/masked-view 
+ - react-native-safe-area-context
+
+## 2. Patching errors
+
+Next up we'll need to patch some module files.
+
+- Open the file `
+/node_modules/@react-native-community/cli-platform-ios/native_modules.rb`
+
+- Find this line:
+
+```ruby
+packages.each do |package_name, package|
+```
+
+- Modify it as described here. We'll need to add every line that's marked with a `+` (obviously, remove the `+`).
+
+```ruby
+packages.each do |package_name, package|
++
++  # PATCH TO DISABLE CONFLICTING MODULES (duplicate symbols)
++  puts ">> package_name #{package_name}"
++
++  next if %w(
++    react-native-screens 
++    @react-native-community/masked-view 
++    react-native-safe-area-context
++    # ADD ANY MORE CONFLICTING DEPENDENCIES HERE
++    # OR REMOVE THE DEPS ABOVE IF THEY ARE NOT CONFLICTING
++  ).include(package_name)
++
++  # PATCH END
+```
+
+## 3. Update dependencies
+
+- In your `ios` folder, delete `Podfile.lock` file and `Pods` folder.
+
+```bash
+rm -rf Podfile.lock Pods/
+```
+
+- Reinstall your pods
+
+```bash
+pod install
+```
+
+## 4. Rebuild the project in XCode
+
+- First, clear your build folder in XCode. You can do this by pressing `Command` + `Shift` + `K`.
+
+- Then, build your project.
+
+Should build normally! 🚀 
+
+## 5. Improving your experience with patch-package
+
+Since it's necessary to add a change to a file inside `node_modules` folder, every developer will have to apply this, and even worse, you'll have to redo all of this if you re-install your dependencies (running `yarn install` or `npm install`).
+
+We're going to use `patch-package` to create a patch so that this is applied automatically every time you or any other developer install any dependency, so that it's not necessary to redo this every time! This is also going to validate if our patch is still valid when updating libs.
+
+- Follow the setup at [patch-package](https://www.npmjs.com/package/patch-package) to get started.
+
+- Install `patch-package`
+
+```bash
+yarn add patch-package
+```
+
+- Add the `patch-package` hook in your `package.json` scripts
+
+In package.json
+
+```bash
+"scripts": {
++  "postinstall": "patch-package"
+ }
+```
+
+- Since we've already modified the file at `node_modules`, simply run the command below to create a patch.
+
+```bash
+npx patch-package @react-native-community/cli-platform-ios
+```
+
+Then commit the patch to your repo.
+
+```bash
+git add .
+git commit -m "Patch iOS build"
+```
+
+---
+
+Done!
+
+Your build should work normally now in iOS and every developer should be able to build your repo without fiddling with `node_modules` files.
+
+Cheers!
+
+## BELOW IS THE OLD README FILE WITH PREVIOUS ATTEMPTS TO SOLVE THIS
+
+--
+
 # ExpoKit iOS build error: duplicated symbols for architecture x86_64
 
 Repo to replicate the "duplicate symbols for architecture x86_64" happening in iOS build using XCode Version 11.3.1 (11C504). 
@@ -37,7 +154,6 @@ After a few hours of tinkering we've found that these packages below are conflic
 react-native-screens
 react-native-safe-area-context
 ```
-
 
 ## 💡 Solutions already attempted:
 
