@@ -27,7 +27,7 @@
     "graphql-tag": "2.6.1",
     "js-md5": "0.7.3",
     "lodash": "4.17.5",
-    "moment": "2.22.0",
+    "moment": "2.29.4",
     "native-base": "2.13.8",
     "query-string": "6.1.0",
     "react": "16.9.0",
